@@ -1,1 +1,48 @@
-using terraform create simple EC2 instance
+#Codespace configuration
+1. create new code space in github
+2. >add dev container configuration files
+3. modify active configuration
+4. terraform (select verified one)
+5. >add dev container configuration files
+6. modify active configuration
+7. aws cli (select verified one)
+
+#VScode extension:
+1. HashiCorp HCL
+2. HashiCorp Terraform
+
+#check terraform and aws cli version
+1. terraform --version
+2. aws --version
+
+#configure aws cli
+aws configure
+#give the key and secret key
+
+
+#check after that
+aws configure list
+
+
+#Using terraform create simple EC2 instance
+provider "aws" {
+    region = "ap-south-1"  
+}
+
+resource "aws_instance" "ec2-first" {
+    ami = "ami-02b8269d5e85954ef"
+    instance_type = "t3.micro"
+     
+}
+
+#intialize terraform
+terraform init
+
+#plain check terraform (DRY-RUN)
+terraform plan
+
+#apply terraform (RUN)
+terraform apply
+
+#destory resource
+terraform destroy
