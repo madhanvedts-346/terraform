@@ -1,0 +1,1 @@
+using terraform create simple EC2 instance
