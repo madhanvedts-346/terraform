@@ -1,0 +1,4 @@
+what is provisioner in terraform?
+In Terraform, a provisioner is a mechanism to execute scripts or commands on a resource after it is created. Essentially, provisioners allow you to do "post-deployment" configuration, like installing software or copying files.
+
+Provisioners are not recommended for general configuration management—Terraform’s main job is infrastructure as code, not software provisioning—but they can be useful for simple tasks.
