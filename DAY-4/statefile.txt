@@ -1,2 +1,40 @@
 what is statefile?
 The Terraform state file is a crucial component of Terraform that helps it keep track of the resources it manages and their current state.
+
+1️⃣ What is a Terraform backend?
+
+A backend tells Terraform where to store the state file (the file that tracks all resources Terraform manages) and how to perform operations like plan and apply.
+
+Local backend (default):
+
+State is stored on your local machine, e.g., terraform.tfstate.
+
+Example: You run Terraform on your laptop — the state lives there.
+
+Remote backend:
+
+State is stored in a remote service, e.g., AWS S3, Azure Storage, Google Cloud Storage, Terraform Cloud.
+
+Benefits:
+
+Multiple people can work on the same infrastructure safely.
+
+The state is centralized and backed up.
+
+Supports locking so two people don’t make conflicting changes.
+
+2️⃣ What is a lock file (or state locking)?
+
+Terraform needs a lock mechanism when multiple people (or processes) are working on the same infrastructure.
+
+Without a lock, two people could run terraform apply at the same time → race conditions → broken or inconsistent state.
+
+How Terraform implements locking on S3 backend:
+
+You specify a DynamoDB table in the backend.
+
+Before Terraform modifies the state, it writes a lock item in the table.
+
+Other Terraform runs see the lock and wait until the first run finishes.
+
+After the operation completes, Terraform releases the lock.
