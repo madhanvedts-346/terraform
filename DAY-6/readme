@@ -1,0 +1,27 @@
+what is workspace in terraform?
+Terraform, a workspace is used to manage multiple state files for the same configuration, allowing us to deploy the same infrastructure code across different environments like dev, staging, and production.
+
+#Workspace related commands
+terraform workspace list        # Show all workspaces
+terraform workspace new dev    # Create a new workspace
+terraform workspace select dev # Switch to workspace
+terraform workspace show       # Show current workspace
+
+🔹 When to use workspaces (and when not)
+✅ Good for:
+Simple environment separation (dev/test/prod)
+Lightweight setups
+Small-to-medium projects
+❌ Avoid for:
+Complex infrastructure differences between environments
+When environments require different configurations or modules
+Large teams needing strict isolation (use separate backends or directories instead)
+
+🔹 Alternative approaches
+Instead of workspaces, many teams prefer:
+Separate directories (/dev, /prod)
+Separate backends (different S3 buckets, etc.)
+Using tools like Terragrunt for better environment management
+
+
+
