@@ -1,0 +1,81 @@
+#Install Vault in Ubuntu
+
+🔹 Download Vault
+wget https://releases.hashicorp.com/vault/1.15.5/vault_1.15.5_linux_amd64.zip
+
+🔹 Install
+sudo apt install unzip -y
+unzip vault_1.15.5_linux_amd64.zip
+sudo mv vault /usr/local/bin/
+
+🔹 Verify
+vault -v
+
+#Start Vault.
+vault server -dev -dev-listen-address="0.0.0.0:8200"
+
+
+#login in ui using the token
+#choose kv - key value
+#create secret engine with name "madhan" -path
+#create secret with name "demo"  -secret
+#key -env
+#value - prod-pass
+
+
+
+#Enable Vault
+export VAULT_ADDR='http://127.0.0.1:8200'
+
+vault auth enable approle
+
+#Create an AppRole:
+vault policy write terraform - <<EOF
+path "*" {
+  capabilities = ["list", "read"]
+}
+
+path "secrets/data/*" {
+  capabilities = ["create", "read", "update", "delete", "list"]
+}
+
+path "madhan/demo/*" {
+  capabilities = ["create", "read", "update", "delete", "list"]
+}
+
+
+path "secret/data/*" {
+  capabilities = ["create", "read", "update", "delete", "list"]
+}
+
+path "auth/token/create" {
+capabilities = ["create", "read", "update", "list"]
+}
+EOF
+
+#Create the AppRole:
+
+vault write auth/approle/role/terraform \
+    secret_id_ttl=10m \
+    token_num_uses=10 \
+    token_ttl=20m \
+    token_max_ttl=30m \
+    secret_id_num_uses=40 \
+    token_policies=terraform
+
+#Generate Role ID:
+vault read auth/approle/role/terraform/role-id
+
+Generate Secret ID:
+vault write -f auth/approle/role/terraform/secret-id
+
+#testing 
+vault write auth/approle/login \
+  role_id="15da24f8-4bd5-0ec8-f3f9-8abb2da57fc8" \
+  secret_id="294c281e-f73b-a78b-cc56-36c87744d437"
+
+
+
+
+
+
