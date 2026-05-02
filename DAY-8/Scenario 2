@@ -1,0 +1,9 @@
+Resource is created by terraform some changes is done manually in aws console
+
+2 ways
+1. update the statefile directly
+terraform refresh   
+
+2.see the preview and update
+terraform plan -refresh-only     -------->(Preview)
+terraform apply -refresh-only    -------->(update the statefile)
