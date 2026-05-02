@@ -1,0 +1,33 @@
+Migrate AWS manual resource to Terraform
+
+1.Create the EC2 in aws console
+2.create main.tf
+
+provider "aws" {
+  region = "us-east-1"
+}
+
+import {
+  to = aws_instance.my_instance
+  id = "i-0bfdea602bacfc167"
+}
+
+#Run this command
+terraform init
+terraform plan -generate-config-out="create_resource.tf"
+
+#copy the resource block in create_resource.tf
+#remove the ipv6 config
+
+ipv6_address_count                   = 0
+ipv6_addresses                       = []
+
+#Remove the primary_network_interface
+primary_network_interface {
+    network_interface_id = "eni-0035b517aae681a5e"
+}
+
+#Generate statefile
+terraform import aws_instance.my_instance i-0edafb8cd45f0f295
+
+#Run terraform plan now it will show no changes.
