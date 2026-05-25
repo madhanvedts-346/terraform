@@ -1,5 +1,5 @@
 Terraform:
-Terraform is an open-source Infrastructure as Code (IaC) tool developed by HashiCorp that allows you to create, manage, and provision infrastructure using configuration files instead of manual processes.
+Terraform is an open-source Infrastructure as Code (IaC) tool developed by HashiCorp that allows you to create and manage infrastructure using configuration files instead of manual processes.
 
 #Codespace configuration
 1. create new code space in github
