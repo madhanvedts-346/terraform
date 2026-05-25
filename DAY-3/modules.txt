@@ -9,3 +9,7 @@ Abstraction
 Testing and Validation
 Documentation
 Scalability
+
+
+Definition: 
+Terraform module is a reusable package of Terraform configurations used to create and manage infrastructure resources in a standardized way. Modules improve code reusability, maintainability, and consistency across environments.
