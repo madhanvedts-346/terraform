@@ -1,5 +1,5 @@
 what is statefile?
-The Terraform state file is a crucial component of Terraform that helps it keep track of the resources it manages and their current state.
+The Terraform state file is a crucial component of Terraform to store metadata and current resource information, enabling Terraform to perform plan, apply, update, and destroy operations efficiently.
 
 1️⃣ What is a Terraform backend?
 
